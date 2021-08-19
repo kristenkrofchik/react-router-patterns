@@ -1,25 +1,27 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import Nav from ".Nav";
-import DogList from ".DogList";
-import DogDetails from ".DogDetails";
+import { BrowserRouter } from "react-router-dom";
+import Nav from "./Nav";
+import Routes from "./Routes";
+
 import './App.css';
 
-function App() {
+import whiskey from "./images/whiskey.jpg";
+import duke from "./images/duke.jpg";
+import perry from "./images/perry.jpg";
+import tubby from "./images/tubby.jpg";
+
+function App({dogs}) {
   return (
     <div className="App">
-      <Nav />
-      <Switch>
-        <Route exact path="/dogs"><DogList /></Route>
-        <Route path="/dogs/:name"><DogDetails /></Route>
-        <Redirect to="/dogs" />
-      </Switch>
+      <BrowserRouter>
+        <Nav dogs={dogs}/>
+        <Routes dogs={dogs}/>
+      </BrowserRouter>
     </div>
   );
 }
 
-App.defaultProps = {
-  dogs: [
+export const dogs = [
     {
       name: "Whiskey",
       age: 5,
@@ -60,7 +62,8 @@ App.defaultProps = {
         "Angelina used to hate Tubby, but claims not to anymore."
       ]
     }
-  ]
-}
+  ];
+
+App.defaultProps = { dogs };
 
 export default App;

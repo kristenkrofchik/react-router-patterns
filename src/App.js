@@ -1,17 +1,18 @@
-import logo from './logo.svg';
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Nav from ".Nav";
+import DogList from ".DogList";
+import DogDetails from ".DogDetails";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Nav />
       <Switch>
-        <Route exact path="/dogs">
-          <DogList />
-        </Route>
-        <Route path="/dogs/:name">
-          <DogDetails />
-        </Route>
-          <Redirect to="/dogs" />
+        <Route exact path="/dogs"><DogList /></Route>
+        <Route path="/dogs/:name"><DogDetails /></Route>
+        <Redirect to="/dogs" />
       </Switch>
     </div>
   );

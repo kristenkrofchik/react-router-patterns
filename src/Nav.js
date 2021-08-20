@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-function Nav() {
+function Nav({dogs}) {
+    const dogLinks = dogs.map(dog => (
+        <NavLink key={dog.name} to={`/dogs/${dog.name.toLowerCase()}`}>{dog.name}</NavLink>
+    ))
     return (
-        <ul>
-            <li><Link to='/dogs'>Dog List</Link></li>
-            <li><Link to='/dogs/:name'>Dog Details</Link></li>     
-        </ul>
+        <nav>
+            <NavLink exact to='/dogs'>Dog List</NavLink>
+            {dogLinks}
+        </nav>
     );
 }
 
